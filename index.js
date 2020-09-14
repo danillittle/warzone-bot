@@ -96,7 +96,6 @@ client.on("message", async (msg) => {
   } else if (command === "matches") {
     try {
       const { data } = await api.matches(args[1].replace(/#/g, "%2523"), args[0]);
-      console.log(data);
       if (data.error) {
         const embed = new MessageEmbed()
           .setTitle("Sorry...")
