@@ -22,8 +22,6 @@ client.on("message", async (msg) => {
   const commandBody = msg.content.slice(prefix.length);
   const args = commandBody.split(" ");
   const command = args.shift().toLowerCase();
-  const platform = args[0];
-  const gametag = args[1].replace(/#/g, "%2523");
 
   if (command === "help") {
     const embed = new MessageEmbed()
@@ -57,7 +55,7 @@ client.on("message", async (msg) => {
     msg.channel.send({ embed });
   } else if (command === "stat") {
     try {
-      const { data } = await api.stat(gametag, platform);
+      const { data } = await api.stat(args[1].replace(/#/g, "%2523"), args[0]);
       if (data.error) {
         const embed = new MessageEmbed()
           .setTitle("FAIL!!!")
@@ -97,7 +95,7 @@ client.on("message", async (msg) => {
     }
   } else if (command === "matches") {
     try {
-      const { data } = await api.matches(gametag, platform);
+      const { data } = await api.matches(args[1].replace(/#/g, "%2523"), args[0]);
       console.log(data);
       if (data.error) {
         const embed = new MessageEmbed()
