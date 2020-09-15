@@ -1,6 +1,5 @@
 import Discord, { MessageEmbed } from "discord.js";
 import api from "./api";
-import humanizeDuration from "humanize-duration";
 
 const client = new Discord.Client();
 const prefix = "!";
@@ -8,7 +7,7 @@ const prefix = "!";
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}!`);
   await client.user.setActivity(
-    `with about ${client.users.cache.size} users (${prefix}help)`
+    `Call of Duty: Modern Warfare (${prefix}help)`
   );
   setInterval(() => {
     console.log(client.users.size);
@@ -32,12 +31,7 @@ client.on("message", async (msg) => {
         [
           `\`${prefix}help\``,
           `\`${prefix}stat <platform> <gametag>\``,
-          `\`${prefix}matches <platform> <gametag> <count>\``,
-          // `\`${prefix}server (game|discord)\``,
-          // `\`${prefix}ping\``,
-          // `\`${prefix}punishments\``,
-          // `\`${prefix}leaderboard (xp|kills|losses|wins)\``,
-          // `\`${prefix}deaths\``,
+          `\`${prefix}matches <platform> <gametag> <count>\``
         ].join("\n"),
         true
       )

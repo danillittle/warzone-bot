@@ -5,7 +5,7 @@ const req = axios.create({
   headers: {
     "content-type": "application/octet-stream",
     "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com",
-    "x-rapidapi-key": "b15609cb8emshb7bcc168530f9fcp179e0bjsnefc59dc2737a",
+    "x-rapidapi-key": process.env.RAPIDAPI_KEY,
     "useQueryString": true,
   },
 });
