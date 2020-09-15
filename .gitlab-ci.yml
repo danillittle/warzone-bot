@@ -1,0 +1,23 @@
+stages:
+  - test
+  - deploy
+
+Tests:
+  stage: test
+  tags:
+    - barry
+  script:
+    - npm -v
+  allow_failure: true
+
+Deploy develop:
+  stage: deploy
+  tags:
+    - barry
+  only:
+    refs:
+      - master
+  script:
+    - pwd
+    - ls
+  allow_failure: true
