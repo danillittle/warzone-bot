@@ -6,13 +6,13 @@ const prefix = "!";
 
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  await client.user.setActivity(
-    `Call of Duty: Modern Warfare (${prefix}help)`
-  );
-  setInterval(() => {
-    console.log(client.users.size);
-    client.user.setActivity(`Call of Duty: Modern Warfare (${prefix}help)`);
-  }, 60000 * 7);
+  // await client.user.setActivity(
+  //   `Call of Duty: Modern Warfare (${prefix}help)`
+  // );
+  // setInterval(() => {
+  //   console.log(client.users.size);
+  //   client.user.setActivity(`Call of Duty: Modern Warfare (${prefix}help)`);
+  // }, 60000 * 7);
 });
 
 client.on("message", async (msg) => {
@@ -31,7 +31,7 @@ client.on("message", async (msg) => {
         [
           `\`${prefix}help\``,
           `\`${prefix}stat <platform> <gametag>\``,
-          `\`${prefix}matches <platform> <gametag> <count>\``
+          `\`${prefix}matches <platform> <gametag> <count>\``,
         ].join("\n"),
         true
       )
@@ -89,7 +89,10 @@ client.on("message", async (msg) => {
     }
   } else if (command === "matches") {
     try {
-      const { data } = await api.matches(args[1].replace(/#/g, "%2523"), args[0]);
+      const { data } = await api.matches(
+        args[1].replace(/#/g, "%2523"),
+        args[0]
+      );
       if (data.error) {
         const embed = new MessageEmbed()
           .setTitle("Sorry...")
