@@ -1,0 +1,17 @@
+stages:
+  - deploy
+
+Deploy develop:
+  stage: deploy
+  tags:
+    - barry
+  only:
+    refs:
+      - master
+  script:
+    - sudo systemctl stop warzone-bot
+    - rsync --recursive --exclude --update --verbose --stats --exclude ".git*" --exclude ".env" . ${WARZONE_BOT_PATH}/
+    - cd ${WARZONE_BOT_PATH}
+    - npm i
+    - sudo systemctl start warzone-bot
+  allow_failure: true
